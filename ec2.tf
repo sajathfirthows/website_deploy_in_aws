@@ -18,7 +18,6 @@ resource "aws_instance" "ec2_instance" {
   ami                    = aws_ami.amazon-ami.id
   subnet_id              = aws_subnet.public_subnet_1.id
   instance_type          = "t2.micro"
-  key_name               = aws_key_pair.my_key_pair.key_name
   vpc_security_group_ids = [aws_security_group.my_server_security_group.id]
   user_data              = <<-EOF
                             #!/bin/bash
@@ -27,7 +26,7 @@ resource "aws_instance" "ec2_instance" {
                             yum install -y httpd
                             mkdir sajath-dir
                             cd sajath-dir
-                            wget https://www.free-css.com/free-css-templates/page296/browny.zip
+                            wget https://www.free-css.com/assets/files/free-css-templates/download/page296/browny.zip
                             unzip browny.zip
                             cd browny-html-template
                             mv * /var/www/html/
